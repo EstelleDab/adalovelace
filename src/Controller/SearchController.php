@@ -18,7 +18,7 @@ class SearchController extends AbstractController
     public function index(): Response
     {
         $form = $this->createForm(SearchArticleFormType::class);  
-        return $this->render('search/index.html.twig', [
+        return $this->renderForm('search/index.html.twig', [
             'form' => $form,
             'controller_name' => 'SearchController',
         ]);
