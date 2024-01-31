@@ -12,7 +12,13 @@ class SearchController extends AbstractController
     public function index(): Response
     {
         return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
+            'controller_name' => 'Recherche Avancée',
         ]);
     }
+
+
+public function searchArticle(Request $request)
+{
+    return $this->render('search/index.html.twig');
+}
 }
