@@ -19,7 +19,7 @@ class SearchController extends AbstractController
 
 public function searchArticle(Request $request)
 {
-    $searchArticleForm= $this->createFormBuilder(SearchArticleFormType::class);
+    $searchArticleForm= $this->createForm(SearchArticleFormType::class);
     return $this->render('search/index.html.twig', [
         'search_form' => $searchArticleForm->createView(),
     ]);
