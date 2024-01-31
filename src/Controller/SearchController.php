@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Form\AbstractType;
 use App\Form\SearchArticleFormType;
 
 class SearchController extends AbstractController
@@ -18,7 +19,7 @@ public function index(): Response
 {
     $form= $this->createForm(SearchArticleFormType::class);
     return $this->render('search/index.html.twig', [
-        'form' => $form->createView(),
+        'form' => $form->buildView(),
     ]);
 
 }
