@@ -13,9 +13,9 @@ class SearchArticleFormType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
+            ->add('content') 
             ->add('Category')
-            ->add('recherche', SubmitType::class)
+            ->add('Rechercher')
         ;
     }
 
