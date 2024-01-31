@@ -13,7 +13,7 @@ class SearchController extends AbstractController
     public function index(): Response
     {
         return $this->render('search/index.html.twig', [
-            'controller_name' => 'Recherche Avancée',
+            'controller_name' => 'SearchController',
         ]);
     }
 
@@ -22,7 +22,7 @@ public function searchArticle(Request $request)
 {
     $searchForm= $this->createForm(SearchArticleFormType::class);
     return $this->render('search/index.html.twig', [
-        'search_form' => $searchForm->createView(),
+        'form' => $searchForm->createView(),
     ]);
 }
 }
