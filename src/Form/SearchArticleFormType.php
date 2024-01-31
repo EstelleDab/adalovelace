@@ -12,10 +12,10 @@ class SearchArticleFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('content')
-            ->add('Category')
-            ->add('recherche', SubmitType::class)
+            ->add('title', TextType::class)
+            ->add('content', TextType::class)
+            ->add('Category', TextType::class)
+            ->add('Rechercher', SubmitType::class)
         ;
     }
 
