@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Controller;
-
+use App\Form\SearchArticleFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request; 
 use App\Controller\ArticleController;
-use App\Form\SearchArticleFormType;
+
 
 class SearchController extends AbstractController
 {
