@@ -17,6 +17,8 @@ class SearchController extends AbstractController
         ]);
     }
 
+}
+
 
 
 
@@ -27,5 +29,4 @@ public function index(): Response
     return $this->render('search/index.html.twig', [
         'form' => $form->createView(),
     ]);
-}
 }
