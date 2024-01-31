@@ -13,11 +13,11 @@ class SearchController extends AbstractController
     #[Route('/search', name: 'app_search')]
 
 
-    public function index(): Response
+    public function new (Request $request): Response
     {
-        $form = $this->createForm(ArticleType::class);
+        $form = $this->createForm(SearchArticleFormType:class);
         return $this->render('search/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form,
         ]);
     } 
 
