@@ -27,20 +27,18 @@ class ArticleController extends AbstractController
     public function search(Request $request, ArticleRepository $articleRepository): Response
     {
         $form = $this->createFormBuilder()
-            -> add('query', TextType::class)
-            ->getForm()
+            ->add('query', TextType::class)
+            ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
+           $search = $form->get('query')->getData();
         }
 
-        return $this->renderForm('article/edit.html.twig', [
-            'article' => $article,
-            'form' => $form,
+        return $this->render('article/search.html.twig', [
+         
+            'form' => $form->createView(),
         ]);
     }
 
