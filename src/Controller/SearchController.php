@@ -15,18 +15,14 @@ class SearchController extends AbstractController
 
     public function index(): Response
     {
-        $form = $this->createForm(SearchArticleFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->render('search/index.html.twig', [
-                'articles' => $articleRepository->findAll(),
-            ]);
-
-        }
-
+        $form = $this->createForm(SearchArticleFormType::class);  
         return $this->render('search/index.html.twig', [
         'form' => $form->createView()
+        
+
+        
+
+      
             
         ]);
     }
