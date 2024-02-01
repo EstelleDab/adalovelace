@@ -7,6 +7,7 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,6 +78,12 @@ class ArticleController extends AbstractController
     public function search(Request $request, ArticleRepository $articleRepository): Response
     {
         $form = $this->createFormBuilder()
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    '1' => 'Catégorie 1',
+                    '2' => 'Catégorie 2',
+                ],
+            ])
             ->add('query', TextType::class)
             ->getForm();
 
@@ -85,7 +92,7 @@ class ArticleController extends AbstractController
         $articles = [];
         if ($form->isSubmitted() && $form->isValid()) {
            $search = $form->get('query')->getData();
-           $articles= $articleRepository->findBy(['title'=> $search]);
+           $articles= $articleRepository->findByKeyword($search);   /*Appel de la fonction créée dans ArticleRepository*/
         }
 
         return $this->render('/article/search.html.twig',[

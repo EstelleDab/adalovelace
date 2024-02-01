@@ -6,6 +6,8 @@
     <h1>Chercher un article</h1>
 
     {{ form_start(form) }}
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category) }}
         {{ form_widget(form.query) }}
         <button type="submit">Rechercher</button>
     {{ form_end(form) }}
@@ -19,6 +21,7 @@
                     <a href="{{ path('article_show', {'id': article.id}) }}">
                     {{ article.title }}
                     </a>
+                    - {{ article.content }}
                 </li>
             {% else %}
                 <li>Aucun article trouvé.</li>
