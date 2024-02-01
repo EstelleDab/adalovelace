@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ma recherche{% endblock %}
+{% block title %}Chercher un article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+    <h1>Chercher un article</h1>
 
-{{ form_start(form) }}
-    {{ form_widget(form.query) }}
-    <button type="submit">Rechercher</button>
-{{ form_end(form) }}
+    {{ form_start(form) }}
+        {{ form_widget(form.query) }}
+        <button type="submit">Rechercher</button>
+    {{ form_end(form) }}
    
     {% if articles is defined %}
     <h2>Mon résultat de recherche</h2>

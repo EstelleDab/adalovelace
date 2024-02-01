@@ -23,9 +23,6 @@ class ArticleController extends AbstractController
         ]);
     }
 
-   
-
-
     #[Route('/new', name: 'article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -91,7 +88,7 @@ class ArticleController extends AbstractController
            $articles= $articleRepository->findBy(['title'=>$search]);
         }
 
-        return $this->renderForm('article/search.html.twig',[
+        return $this->render('article/search.html.twig',[
             'form' => $form->createView(),
         ]);
     }
