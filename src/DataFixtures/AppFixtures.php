@@ -17,6 +17,10 @@ class AppFixtures extends Fixture
         $categorie->setName("Catégorie 1");
         $manager->persist($categorie);
 
+        $categorie = new Category();
+        $categorie->setName("Catégorie 2");
+        $manager->persist($categorie);
+
         $article = new Article();
         $article->setTitle("Article 1");
         $article->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra urna in nunc dapibus tincidunt et eu magna. Pellentesque venenatis varius orci sit amet condimentum. Quisque sit amet enim id nisl consectetur gravida. Curabitur efficitur felis rutrum ligula convallis convallis. Vestibulum eget dictum lorem. Vestibulum est justo, fermentum eu eleifend vestibulum, lacinia efficitur erat. Proin a ligula lorem. In iaculis dignissim sodales.");
