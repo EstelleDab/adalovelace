@@ -85,12 +85,13 @@ class ArticleController extends AbstractController
         $articles = [];
         if ($form->isSubmitted() && $form->isValid()) {
            $search = $form->get('query')->getData();
-           $articles= $articleRepository->findBy(['title'=>$search]);
+           $articles= $articleRepository->findBy(['title'=> $search]);
         }
 
         return $this->render('/article/search.html.twig',[
             'form' => $form->createView(),
-        ]);
+            'articles' => $articles, 
+        ]); 
     }
 
 
