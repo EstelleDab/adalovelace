@@ -23,32 +23,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-
-    #[Route('/search', name: 'article_search', methods: ['GET', 'POST'])]
-    public function search(Request $request, ArticleRepository $articleRepository): Response
-    {
-        $form = $this->createFormBuilder()
-            ->add('query', TextType::class)
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-           $search = $form->get('query')->getData();
-           $articles= $articleRepository->findBy(['title'=>$search])
-        }
-
-        return $this->renderForm('article/search.html.twig', [
-         
-            'form' => $form->createView(),
-            'article'=> $articles,
-        ]);
-    }
-
-
-
-
-
+   
 
 
     #[Route('/new', name: 'article_new', methods: ['GET', 'POST'])]
@@ -70,6 +45,9 @@ class ArticleController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+
 
     #[Route('/show/{id}', name: 'article_show', methods: ['GET'])]
     public function show(Article $article): Response
@@ -96,6 +74,28 @@ class ArticleController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+    #[Route('/search', name: 'article_search', methods: ['GET', 'POST'])]
+    public function search(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $form = $this->createFormBuilder()
+            ->add('query', TextType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        $articles = [];
+        if ($form->isSubmitted() && $form->isValid()) {
+           $search = $form->get('query')->getData();
+           $articles= $articleRepository->findBy(['title'=>$search]);
+        }
+
+        return $this->renderForm('article/search.html.twig',[
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     #[Route('/delete/{id}', name: 'article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
