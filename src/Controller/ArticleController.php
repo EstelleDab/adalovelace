@@ -80,8 +80,8 @@ class ArticleController extends AbstractController
         $form = $this->createFormBuilder()
             ->add('category', ChoiceType::class, [
                 'choices' => [
-                    '1' => 'Catégorie 1',
-                    '2' => 'Catégorie 2',
+                    'Catégorie 1' => 'Catégorie 1',
+                    'Catégorie 2' => 'Catégorie 2',
                 ],
             ])
             ->add('query', TextType::class)
@@ -91,8 +91,15 @@ class ArticleController extends AbstractController
 
         $articles = [];
         if ($form->isSubmitted() && $form->isValid()) {
-           $search = $form->get('query')->getData();
-           $articles= $articleRepository->findByKeyword($search);   /*Appel de la fonction créée dans ArticleRepository*/
+            $search = $form->get('query')->getData();
+            $articles= $articleRepository->findByKeyword($search);   /*Appel de la fonction créée dans ArticleRepository*/
+            
+            $categ =  $form->get('category')->getData();
+            /*foreach($articles as $article){
+                if ($article[2] == $categ){
+                    $articlescateg = $articlescateg + $article;
+                }
+            }*/
         }
 
         return $this->render('/article/search.html.twig',[
