@@ -11,21 +11,6 @@ use App\Controller\ArticleController;
 
 class SearchController extends AbstractController
 {
-<<<<<<< Updated upstream
-    #[Route('/search', name: 'app_search' )]
-
-    public function index(): Response
-    {
-        $form = $this->createForm(SearchArticleType::class);  
-        return $this->renderForm('search/index.html.twig', [
-            'form' => $form,
-            
-        ]);
-        
-    }
-
-}
-=======
     #[Route('/search', name: 'search_article', methods: ['GET'])]
     public function searchArticle(Request $request)
     {
@@ -48,5 +33,4 @@ class SearchController extends AbstractController
     }
 }
 
-#
->>>>>>> Stashed changes
+
