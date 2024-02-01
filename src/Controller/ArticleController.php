@@ -90,7 +90,8 @@ class ArticleController extends AbstractController
 
         return $this->render('/article/search.html.twig',[
             'form' => $form->createView(),
-        ]);
+            'articles' => $articles, 
+        ]); 
     }
 
 
