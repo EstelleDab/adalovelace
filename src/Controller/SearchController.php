@@ -11,20 +11,16 @@ use App\Controller\ArticleController;
 
 class SearchController extends AbstractController
 {
-    #[Route('/search', name: 'app_search')]
-
-
+    #[Route('/search', name: 'app_search' )]
 
     public function index(): Response
     {
-        $form = $this->createForm(SearchArticleFormType::class);  
+        $form = $this->createForm(SearchArticleType::class);  
         return $this->renderForm('search/index.html.twig', [
             'form' => $form,
             
         ]);
         
     }
-
-
 
 }
