@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma recherche{% endblock %}
+
+{% block body %}
+    <h1>Create new Article</h1>
+
+{{ form_start(form) }}
+    {{ form_widget(form.query) }}
+    <button type="submit">Rechercher</button>
+{{ form_end(form) }}
+   
+    {% if articles is defined %}
+    <h2>Mon résultat de recherche</h2>
+        <ul>
+    
+            {% for article in articles %}
+                <li>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">
+                    {{ article.title }}
+                    </a>
+                </li>
+            {% else %}
+                <li>Aucun article trouvé.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    
+{% endblock %}
