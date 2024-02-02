@@ -96,7 +96,7 @@ class ArticleController extends AbstractController
             $search = $form->get('query')->getData();
             $categ =  $form->get('category')->getData();
 
-            $articles= $articleRepository->findByKeyword($search, $categ); /*Appel de la fonction créée dans ArticleRepository*/
+            $articles= $articleRepository->findByKeyword($search); /*Appel de la fonction créée dans ArticleRepository*/
 
             /* boucle for each pour ajouter le 2ème critère*/
             foreach($articles as $article){
