@@ -67,8 +67,3 @@
                 $manager->flush();
             }
         }
-        
-
-        $manager->flush();
-    }
-}
