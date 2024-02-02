@@ -17,7 +17,7 @@
                 $manager->persist($categorie1);
         
                 $categorie2 = new Category();
-                $categorie2->setName("Ada Lovelace Team");
+                $categorie2->setName("Ada LoveLace Team");
                 $manager->persist($categorie2);
         
         
@@ -41,7 +41,7 @@
         
                 $article = new Article();
                 $article->setTitle("La symbolique du nombre 7");
-                $article->setContent("Il paraîtrait que ce nombre symboliserait la perfection divine... pour moi le 7 de 7/20 certes rimes avec divin mais symbolise plutôt simplement un gros foirage... et pas sure que la personne responsable ait quelque chose de divin pour le coup!");
+                $article->setContent("Il paraîtrait que ce nombre symboliserait la perfection divine... pour moi le 7 de 7/20 certes times avec divin mais symbolise plutôt simplement un gros foirage... et pas sure que la personne responsable ait quelque chose de divin pour le coup!");
                 $article->setCategory($categorie1);
                 $manager->persist($article);
         
