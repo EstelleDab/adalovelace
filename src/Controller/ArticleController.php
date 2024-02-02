@@ -83,10 +83,9 @@ class ArticleController extends AbstractController
                 'choices' => [
                     'categorie1',
                     'categorie2',
-                    'categorie3',
-                ]
-                'class' => Category::class,
-                'choice_label' => 'name',
+           
+                ],
+        
             ])
             ->getForm();
 
