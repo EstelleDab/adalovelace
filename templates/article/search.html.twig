@@ -3,17 +3,18 @@
 {% block title %}Chercher un article{% endblock %}
 
 {% block body %}
-    <h1>Chercher un article</h1>
+    <h1 class="mb-5" >Chercher un article</h1>
 
     {{ form_start(form) }}
-        
+       
         {{ form_widget(form.category) }}
         {{ form_widget(form.query) }}
-        <button type="submit">Rechercher</button>
+        
+        <button class="btn btn-warning mt-3" type="submit">Rechercher</button>
     {{ form_end(form) }}
    
     {% if articles is defined %}
-    <h2>Mon résultat de recherche</h2>
+    <h2 class="m-5">Mon résultat de recherche</h2>
         <ul>
     
             {% for article in articles %}
