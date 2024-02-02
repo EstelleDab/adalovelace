@@ -78,6 +78,7 @@ class ArticleController extends AbstractController
     {
         $form = $this->createFormBuilder()
             ->add('query', TextType::class)
+            ->add('catquery', TextType::class)
             ->getForm();
 
         $form->handleRequest($request);
