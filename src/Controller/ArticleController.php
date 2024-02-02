@@ -6,6 +6,8 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,7 +44,10 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'article_show', methods: ['GET'])]
+
+
+
+    #[Route('/show/{id}', name: 'article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {
         return $this->render('article/show.html.twig', [
@@ -50,7 +55,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'article_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}/edit', name: 'article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
@@ -68,7 +73,48 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'article_delete', methods: ['POST'])]
+
+    #[Route('/search', name: 'article_search', methods: ['GET', 'POST'])]
+    public function search(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $form = $this->createFormBuilder()
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'Catégorie 1' => '1',
+                    'Catégorie 2' => '2',
+                ],
+            ])
+            ->add('query', TextType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        $articles = [];
+        $articlescateg = [];
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->get('query')->getData();
+            $categ =  $form->get('category')->getData();
+
+            $articles= $articleRepository->findByKeyword($search); /*Appel de la fonction créée dans ArticleRepository*/
+
+            /* boucle for each pour ajouter le 2ème critère*/
+            foreach($articles as $article){
+                $category=$article->getCategory()->getId();
+                if ($category == $categ){
+                    array_push($articlescateg, $article);
+                }
+            }
+        }
+
+        return $this->render('/article/search.html.twig',[
+            'form' => $form->createView(),
+            'articles' => $articlescateg, /* ici on retourne le tableau double-trié */
+        ]); 
+    }
+
+
+    #[Route('/delete/{id}', name: 'article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {

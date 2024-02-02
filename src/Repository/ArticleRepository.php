@@ -19,22 +19,29 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /*Nouvelle fonction findByKeyword --> permet de rechercher une correspondance avec saisie partielle*/
+    public function findByKeyword($keyword){
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.title LIKE :keyword OR a.content LIKE :keyword')
+            ->setParameter('keyword', '%'.$keyword.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    /*public function findByCategory($value)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
+            ->andWhere('a.Category.id = :val')
             ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
-    }
-    */
+    }*/
+    
 
     /*
     public function findOneBySomeField($value): ?Article
