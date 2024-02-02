@@ -78,7 +78,10 @@ class ArticleController extends AbstractController
     {
         $form = $this->createFormBuilder()
             ->add('query', TextType::class)
-            ->add('catquery', TextType::class)
+            ->add('catequery', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+            ])
             ->getForm();
 
         $form->handleRequest($request);
