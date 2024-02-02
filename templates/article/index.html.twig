@@ -3,6 +3,7 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
+<div>
     <h1>Mes articles</h1>
 
     <table class="table">
@@ -39,5 +40,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('article_new') }}">Create new</a>
+    <div>
+    <a href="{{ path('article_new') }}" class="btn btn-success" role="button">Create new</a>
+    </div>
+
+    </div>
 {% endblock %}
