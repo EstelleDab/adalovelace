@@ -90,22 +90,26 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         $articles = [];
+        $articlescateg = [];
+
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->get('query')->getData();
-            $articles= $articleRepository->findByKeyword($search);   /*Appel de la fonction créée dans ArticleRepository*/
-            var_dump($articles);
-            
             $categ =  $form->get('category')->getData();
+
+            $articles= $articleRepository->findByKeyword($search, $categ); /*Appel de la fonction créée dans ArticleRepository*/
+
+            /* boucle for each pour ajouter le 2ème critère*/
             foreach($articles as $article){
-                if ($article[2] == $categ){
-                    $articlescateg = $articlescateg + $article;
+                $category=$article->getCategory()->getId();
+                if ($category == $categ){
+                    array_push($articlescateg, $article);
                 }
             }
         }
 
         return $this->render('/article/search.html.twig',[
             'form' => $form->createView(),
-            'articles' => $articles, 
+            'articles' => $articlescateg, /* ici on retourne le tableau double-trié */
         ]); 
     }
 
