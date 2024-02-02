@@ -19,8 +19,8 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                    <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-primary" role="button" aria-pressed="true">Show</a>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-secondary" role="button" aria-pressed="true">Edit</a>
                 </td>
             </tr>
         {% else %}
