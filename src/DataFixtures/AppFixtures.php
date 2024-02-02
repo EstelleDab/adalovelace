@@ -14,11 +14,11 @@
                 // $manager->persist($product);
                 $categorie1 = new Category();
                 $categorie1->setName("Ciel !");
-                $manager->persist($categorie1);
+                $manager->persist($categorie);
         
                 $categorie2 = new Category();
                 $categorie2->setName("Ada Lovelace Team");
-                $manager->persist($categorie2);
+                $manager->persist($categorie);
         
         
                 $article = new Article();

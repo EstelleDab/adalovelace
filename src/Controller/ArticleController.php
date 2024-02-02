@@ -80,8 +80,8 @@ class ArticleController extends AbstractController
         $form = $this->createFormBuilder()
             ->add('category', ChoiceType::class, [
                 'choices' => [
-                    "Ciel !"=>'1',
-                    "Ada Lovelace Team"=>'2',
+                    'Catégorie 1' => '1',
+                    'Catégorie 2' => '2',
                 ],
             ])
             ->add('query', TextType::class)
