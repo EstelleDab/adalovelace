@@ -17,7 +17,7 @@
                 $manager->persist($categorie1);
         
                 $categorie2 = new Category();
-                $categorie2->setName("Ada LoveLace Team");
+                $categorie2->setName("Ada Lovelace Team");
                 $manager->persist($categorie2);
         
         
