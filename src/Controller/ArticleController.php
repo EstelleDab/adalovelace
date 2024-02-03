@@ -78,12 +78,12 @@ class ArticleController extends AbstractController
     public function search(Request $request, ArticleRepository $articleRepository): Response
     {
         $form = $this->createFormBuilder()
-            ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'Catégorie 1' => '1',
-                    'Catégorie 2' => '2',
-                ],
-            ])
+        ->add('category', ChoiceType::class, [
+            'choices' => [
+                'Catégorie 1' => '1',
+                'Catégorie 2' => '2',
+            ],
+        ])
             ->add('query', TextType::class)
             ->getForm();
 
